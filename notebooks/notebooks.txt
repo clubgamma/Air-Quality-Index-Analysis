@@ -1,1 +1,21 @@
 #add your .ipynb file over here 
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load the dataset
+df = pd.read_csv('../data/aqi_scaled.csv')  
+
+# Calculate the average levels of each air quality indicator
+average_aqi = df[['co', 'no', 'no2', 'o3', 'so2', 'pm2_5', 'pm10', 'nh3']].mean()
+
+# Create a bar plot for the average AQI levels
+plt.figure(figsize=(10, 6))
+sns.barplot(x=average_aqi.index, y=average_aqi.values)
+plt.title('Average Air Quality Index (AQI) Levels')
+plt.xlabel('Air Quality Indicators')
+plt.ylabel('Average Levels')
+plt.xticks(rotation=45)
+plt.grid(axis='y')
+plt.tight_layout()
+plt.show()
